@@ -1523,14 +1523,21 @@ export default class GoTrueClient {
    * Checks if the current URL and backing storage contain parameters given by a PKCE flow
    */
   private async _isPKCEFlow(): Promise<boolean> {
-    const params = parseParametersFromURL(window.location.href)
+    const url = window.location.href;
+    const params = parseParametersFromURL(url);
+
+    // Check if the URL matches the specified pattern
+    // Used to prevent PKCE for this specfic URL so we can handle on our own for 3rd party integrations in #Anything 
+    if (url.match(/^\/auth\/[^\/]+\/callback$/)) {
+      return false;
+    }
 
     const currentStorageContent = await getItemAsync(
       this.storage,
       `${this.storageKey}-code-verifier`
-    )
+    );
 
-    return !!(params.code && currentStorageContent)
+    return !!(params.code && currentStorageContent);
   }
 
   /**
