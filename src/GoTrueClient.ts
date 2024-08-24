@@ -1532,6 +1532,8 @@ export default class GoTrueClient {
       this._debug('#_isPKCEFlow()', 'returning false from Anytihng Fork of Auth-JS because of URL pattern match');
 
       return false;
+    } else {
+      this._debug('#_isPKCEFlow()', 'url did not match pattern from Anytihng Fork of Auth-JS because of URL pattern match');
     }
 
     const currentStorageContent = await getItemAsync(
