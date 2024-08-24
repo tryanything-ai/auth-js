@@ -1523,6 +1523,7 @@ export default class GoTrueClient {
    * Checks if the current URL and backing storage contain parameters given by a PKCE flow
    */
   private async _isPKCEFlow(): Promise<boolean> {
+    console.log('Checking if PKCE flow in Anything Fork')
     const url = window.location.href;
     const params = parseParametersFromURL(url);
 
