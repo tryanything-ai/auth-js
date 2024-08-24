@@ -1529,6 +1529,8 @@ export default class GoTrueClient {
     // Check if the URL matches the specified pattern
     // Used to prevent PKCE for this specfic URL so we can handle on our own for 3rd party integrations in #Anything 
     if (url.match(/^\/auth\/[^\/]+\/callback$/)) {
+      this._debug('#_isPKCEFlow()', 'returning false from Anytihng Fork of Auth-JS because of URL pattern match');
+
       return false;
     }
 
